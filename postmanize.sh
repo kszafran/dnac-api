@@ -23,9 +23,9 @@ for id in $ids; do
     --compressed > "$tempdir/$id.json"
 done
 
-jq . -s "$tempdir"/*.json > api.json
+jq . -s "$tempdir"/*.json > api-eft.json
 rm -rf "$tempdir"
 
-coll=DNA-C_Platform_API_v1.4.1.postman_collection.json
-jq -f postmanize.jq api.json | jq -s '.[0].item = [.[1]] + .[0].item | .[0]' - auth.json > $coll
+coll=DNA-C_Platform_Intent_API_v1.2_EFT.postman_collection.json
+jq -f postmanize.jq api-eft.json | jq -s '.[0].item = [.[1]] + .[0].item | .[0]' - auth.json > $coll
 jq -r '..|.request? | select(.) | .method + (.method | (7 - length) * " ") + (.url.raw | gsub(".*}}"; ""))' $coll > overview.txt

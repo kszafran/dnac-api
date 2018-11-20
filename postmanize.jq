@@ -112,7 +112,7 @@ def desc_body:
 
 {
   info: {
-    name: "DNA-C Platform API v1.4.1",
+    name: "DNA-C Platform Intent API v1.2 EFT",
     schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   item: group_by(.domain) | map({

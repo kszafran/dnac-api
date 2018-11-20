@@ -1,9 +1,9 @@
-# DNA-C Platform API v1.4.1
+# DNA-C Platform API v1.2 EFT
 
-This repository contains the Cisco DNA-C Platform API v1.4.1 as a Postman collection.
+This repository contains the Cisco DNA-C Platform API v1.2 EFT as a Postman collection.
 
 Included are:
-- DNA-C_Platform_API_v1.4.1.postman_collection.json - Postman collection
+- DNA-C_Platform_API_v1.2_EFT.postman_collection.json - Postman collection
 - DNA-C_Sandbox.postman_environment.json - Postman environment with credentials to DNA-C sandbox
 - overview.txt - list of all the endpoints
 
