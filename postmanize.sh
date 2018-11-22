@@ -26,6 +26,17 @@ done
 jq . -s "$tempdir"/*.json > api-eft.json
 rm -rf "$tempdir"
 
+curl 'https://pubhub.devnetcloud.com/media/dna-center-api-126/docs/swagger_dnacp_126.json' \
+    --compressed > api-ga.json
+
+function summarize() {
+  jq -r '..|.request? | select(.) | .method + (.method | (7 - length) * " ") + (.url.raw | gsub(".*}}"; ""))' "$1" > "$2"
+}
+
 coll=DNA-C_Platform_Intent_API_v1.2_EFT.postman_collection.json
-jq -f postmanize.jq api-eft.json | jq -s '.[0].item = [.[1]] + .[0].item | .[0]' - auth.json > $coll
-jq -r '..|.request? | select(.) | .method + (.method | (7 - length) * " ") + (.url.raw | gsub(".*}}"; ""))' $coll > overview.txt
+jq -f postmanize-eft.jq api-eft.json | jq -s '.[0].item = [.[1]] + .[0].item | .[0]' - auth.json > $coll
+summarize "$coll" overview-eft.txt
+
+coll=DNA-C_Platform_Intent_API_v1.2.6_GA.postman_collection.json
+jq -f postmanize-ga.jq api-ga.json > $coll
+summarize "$coll" overview-ga.txt
